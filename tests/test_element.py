@@ -1,5 +1,4 @@
-from pages.element_page import TextBoxPage, CheckBoxPage, RadioButtonPage
-import time
+from site_pages.element_page import TextBoxPage, CheckBoxPage, RadioButtonPage
 
 
 class TestElement:
@@ -34,6 +33,6 @@ class TestElement:
             radio_button_page.click_radio_button("no")
             output_no = radio_button_page.get_output_result()
             assert output_yes == 'Yes', "Yes' not selected"
-            assert output_impressive == "Impressive', 'Impressive' not selected"
+            assert output_impressive == "Impressive", "Impressive' not selected"
             assert output_no == 'No', "No' not selected"
 

@@ -3,7 +3,7 @@ import random
 
 from generator.generator import generated_person
 from locators.element_page_locators import TextBoxPageLocators, CheckBoxPageLocators, RadioButtonLocators
-from pages.base_page import BasePage
+from site_pages.base_page import BasePage
 
 
 class TextBoxPage(BasePage):
