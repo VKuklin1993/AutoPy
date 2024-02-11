@@ -8,7 +8,6 @@ from site_pages.base_page import BasePage
 
 class TextBoxPage(BasePage):
     locators = TextBoxPageLocators()
-
     def fill_fields(self):
         person_info = next(generated_person())
         name = person_info.full_name
@@ -30,10 +29,8 @@ class TextBoxPage(BasePage):
         return output_name, output_email, output_current_address, output_permanent_address
 
 
-
 class CheckBoxPage(BasePage):
     locators = CheckBoxPageLocators()
-
     def open_full_list(self):
         self.element_is_visible(self.locators.EXPAND_ALL_BUTTON).click()
 
@@ -67,7 +64,6 @@ class CheckBoxPage(BasePage):
 
 class RadioButtonPage(BasePage):
     locators = RadioButtonLocators()
-
     def click_radio_button(self, choice):
         choices = {
             'yes': self.locators.RADIO_YES,

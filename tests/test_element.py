@@ -1,4 +1,6 @@
-from site_pages.element_page import TextBoxPage, CheckBoxPage, RadioButtonPage
+from site_pages.element_page import TextBoxPage
+from site_pages.element_page import CheckBoxPage
+from site_pages.element_page import RadioButtonPage
 
 
 class TestElement:
@@ -20,9 +22,7 @@ class TestElement:
             output_data = set(check_box_page.get_checked_output())
             assert input_data == output_data, 'discrepancies in input and output data'
 
-
     class TestRadioButton:
-
         def test_radio_button(self, driver):
             radio_button_page = RadioButtonPage(driver, 'https://demoqa.com/radio-button')
             radio_button_page.open_url()
@@ -35,4 +35,3 @@ class TestElement:
             assert output_yes == 'Yes', "Yes' not selected"
             assert output_impressive == "Impressive", "Impressive' not selected"
             assert output_no == 'No', "No' not selected"
-
