@@ -14,3 +14,13 @@ def driver(request):
     request.cls.driver = driver
     yield driver
     driver.quit()
+
+
+@pytest.fixture
+def open_page(request, driver):
+    page_class = request.param['class']
+    page_url = request.param['url']
+
+    class_object = page_class(driver, page_url)
+    class_object.open_url()
+    return class_object

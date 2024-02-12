@@ -1,37 +1,40 @@
-from site_pages.element_page import TextBoxPage
-from site_pages.element_page import CheckBoxPage
-from site_pages.element_page import RadioButtonPage
+import pytest
+import check.assertion_test
+
+from pages.text_box_page import TextBoxPage
+from pages.check_box_page import CheckBoxPage
+from pages.radio_button_page import RadioButtonPage
 
 
 class TestElement:
     class TestTextBox:
-        def test_text_box(self, driver):
-            text_box_page = TextBoxPage(driver, 'https://demoqa.com/text-box')
-            text_box_page.open_url()
-            input_data = text_box_page.fill_fields()
-            output_data = text_box_page.check_field()
-            assert input_data == output_data, 'discrepancies in input and output data'
+        @pytest.mark.parametrize(
+            'open_page', [{'class': TextBoxPage, 'url': 'https://demoqa.com/text-box'}],
+            indirect=True)
+        def test_text_box(self, open_page):
+            input_data = open_page.fill_fields()
+            output_data = open_page.check_field()
+            assertion = check.assertion_test.AssertionTest()
+            assertion.equality_of_several_arguments(input_data, output_data)
 
     class TestCheckBox:
-        def test_check_box(self, driver):
-            check_box_page = CheckBoxPage(driver, 'https://demoqa.com/checkbox')
-            check_box_page.open_url()
-            check_box_page.open_full_list()
-            check_box_page.click_random_check_box()
-            input_data = set(check_box_page.get_checked_checkbox())
-            output_data = set(check_box_page.get_checked_output())
-            assert input_data == output_data, 'discrepancies in input and output data'
+        @pytest.mark.parametrize(
+            'open_page', [{'class': CheckBoxPage, 'url': 'https://demoqa.com/checkbox'}],
+            indirect=True)
+        def test_check_box(self, open_page):
+            open_page.open_full_list()
+            open_page.click_random_check_box()
+            input_data = open_page.get_checked_checkbox()
+            output_data = open_page.get_checked_output()
+            assertion = check.assertion_test.AssertionTest()
+            assertion.equality_of_several_arguments(input_data, output_data)
 
     class TestRadioButton:
-        def test_radio_button(self, driver):
-            radio_button_page = RadioButtonPage(driver, 'https://demoqa.com/radio-button')
-            radio_button_page.open_url()
-            radio_button_page.click_radio_button("yes")
-            output_yes = radio_button_page.get_output_result()
-            radio_button_page.click_radio_button("impressive")
-            output_impressive = radio_button_page.get_output_result()
-            radio_button_page.click_radio_button("no")
-            output_no = radio_button_page.get_output_result()
-            assert output_yes == 'Yes', "Yes' not selected"
-            assert output_impressive == "Impressive", "Impressive' not selected"
-            assert output_no == 'No', "No' not selected"
+        @pytest.mark.parametrize(
+            'open_page', [{'class': RadioButtonPage, 'url': 'https://demoqa.com/radio-button'}],
+            indirect=True)
+        def test_radio_button(self, open_page):
+            input_data, output_data = open_page.click_and_get_value()
+            assertion = check.assertion_test.AssertionTest()
+            assertion.equality_of_several_arguments(input_data, output_data)
+
