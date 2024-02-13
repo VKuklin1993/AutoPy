@@ -1,6 +1,6 @@
 from data.data import Person
-from locators.text_box_page_locators import TextBoxPageLocators
-from pages.base_page import BasePage
+from pageObject.locators.text_box_page_locators import TextBoxPageLocators
+from pageObject.pages.base_page import BasePage
 
 
 class TextBoxPage(BasePage):
