@@ -1,11 +1,13 @@
+import allure
 import pytest
 
-from pageObject.check.assertion_test import AssertionTest
+from pageObjects.check.assertion_test import AssertionTest
 from data.constants import Const
-from pageObject.pages.check_box_page import CheckBoxPage
+from pageObjects.pages.check_box_page import CheckBoxPage
 
 
 class TestCheckBox:
+    @allure.feature('Checkbox')
     @pytest.mark.parametrize(
         'open_page', [{'class': CheckBoxPage, 'url': Const.URL_CHECK_BOX_PAGE}],
         indirect=True)

@@ -1,11 +1,13 @@
+import allure
 import pytest
 
-from pageObject.check.assertion_test import AssertionTest
+from pageObjects.check.assertion_test import AssertionTest
 from data.constants import Const
-from pageObject.pages.radio_button_page import RadioButtonPage
+from pageObjects.pages.radio_button_page import RadioButtonPage
 
 
 class TestRadioButton:
+    @allure.feature('Radio button')
     @pytest.mark.parametrize(
         'open_page', [{'class': RadioButtonPage, 'url': Const.URL_RADIO_BUTTON}],
         indirect=True)
